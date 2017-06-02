@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A5DC30D11EDE6D4300655975 /* LocalNotification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalNotification.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5DC30D11EDE6D4300655975 /* Reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DC30D41EDE6D4300655975 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5DC30D91EDE6D4300655975 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5DC30DB1EDE6D4400655975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		A5DC30D21EDE6D4300655975 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5DC30D11EDE6D4300655975 /* LocalNotification.app */,
+				A5DC30D11EDE6D4300655975 /* Reminder.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,7 +90,7 @@
 			);
 			name = LocalNotification;
 			productName = LocalNotification;
-			productReference = A5DC30D11EDE6D4300655975 /* LocalNotification.app */;
+			productReference = A5DC30D11EDE6D4300655975 /* Reminder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -277,7 +277,7 @@
 				INFOPLIST_FILE = LocalNotification/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rmao.LocalNotification;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Reminder;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -290,7 +290,7 @@
 				INFOPLIST_FILE = LocalNotification/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rmao.LocalNotification;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Reminder;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

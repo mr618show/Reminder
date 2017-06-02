@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import UserNotifications
 
 class TodoList {
@@ -30,9 +31,6 @@ class TodoList {
         
         //let notification = UNNotificationRequest()
         content.body = "Todo Item \"\(item.title)\" Is Overdue" // text that will be displayed in the notification
-        //notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        //notification.fireDate = item.deadline as Date // todo item due date (when notification will be fired) notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        
         content.sound = UNNotificationSound.default()
         content.userInfo = ["title": item.title, "UUID": item.UUID] // assign a unique identifier to the notification so that we can retrieve it later
         
@@ -55,6 +53,26 @@ class TodoList {
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
+    }
+    
+    func removeItem(_ item: TodoItem) {
+        let application = UIApplication.shared
+        let scheduledNotifications = application.scheduledLocalNotifications!
+        
+        //let scheduledNotifications: [UNNotificationRequest]? = UIApplication.sharedApplication().scheduledLocalNotifications
+        //guard scheduledNotifications != nil else {return} // Nothing to remove, so return
+        
+        for notification in scheduledNotifications { // loop through notifications...
+            if (notification.userInfo!["UUID"] as! String == item.UUID) { // ...and cancel the notification that corresponds to this TodoItem instance (matched
+                UIApplication.shared.cancelLocalNotification(notification) // there should be a maximum of one match on UUID
+                break
+            }
+        }
+        
+        if var todoItems = UserDefaults.standard.dictionary(forKey: ITEMS_KEY) {
+            todoItems.removeValue(forKey: item.UUID)
+            UserDefaults.standard.set(todoItems, forKey: ITEMS_KEY) // save/overwrite todo item list
+        }
     }
     
     func allItems () -> [TodoItem] {

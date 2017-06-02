@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class TodoTableViewController: UITableViewController {
     
@@ -14,6 +15,9 @@ class TodoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(TodoTableViewController.refreshList), name: NSNotification.Name(rawValue: "TodoListShouldRefresh"), object: nil)
+    
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -63,7 +67,7 @@ class TodoTableViewController: UITableViewController {
             cell.detailTextLabel?.textColor = UIColor.black
         }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = " 'Due' MMM dd 'at' h:mm a"
+        dateFormatter.dateFormat = " 'Due at' MMM dd 'at' h:mm a"
         cell.detailTextLabel?.text = dateFormatter.string(from: todoItem.deadline as Date)
         
         return cell
@@ -83,8 +87,11 @@ class TodoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            todoItems.remove(at: indexPath.row)
+            let item = todoItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            TodoList.sharedInstance.removeItem(item)
+            self.navigationItem.rightBarButtonItem!.isEnabled = true
+     
         }
     }
     
